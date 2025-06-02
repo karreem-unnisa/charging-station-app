@@ -38,7 +38,8 @@ export default {
   methods: {
     async handleSubmit() {
       try {
-        const res = await axios.post('http://localhost:5000/api/chargers', {
+        const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/chargers`
+, {
           name: this.form.name,
           location: {
             latitude: this.form.latitude,

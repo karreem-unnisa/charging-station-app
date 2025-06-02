@@ -93,11 +93,12 @@ export default {
     },
     async saveEdit(id) {
       try {
-        await axios.put(`http://localhost:5000/api/chargers/${id}`, this.editForm, {
+        await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/chargers/${id}`, data)
+, this.editForm, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
           }
-        })
+        }
         alert('Charger updated!')
         this.cancelEdit()
         this.$emit('charger-deleted') // triggers re-fetch
@@ -108,11 +109,12 @@ export default {
     async deleteCharger(id) {
       if (!confirm('Delete this charger?')) return
       try {
-        await axios.delete(`http://localhost:5000/api/chargers/${id}`, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
-          }
-        })
+        await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/chargers/${id}`, this.editForm, {
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem('token')}`
+  }
+})
+
         this.$emit('charger-deleted')
       } catch (err) {
         alert('Delete failed')
