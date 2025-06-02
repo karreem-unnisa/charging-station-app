@@ -19,7 +19,8 @@ const corsOptions = {
   credentials: true
 };
 
-app.use(cors(corsOptions));
+app.options('*', cors(corsOptions)); // handle preflight requests
+
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
