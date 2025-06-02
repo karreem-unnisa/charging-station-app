@@ -12,17 +12,16 @@ connectDB();
 
 const app = express();
 
-// ✅ CORS must allow the FRONTEND (Vercel) URL
+// ✅ Correct CORS setup for Vercel
 const corsOptions = {
-  origin: ['https://charging-station-app-five.vercel.app'], // <== correct this
+  origin: ['https://charging-station-app-five.vercel.app'], // your Vercel domain
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 };
-
-app.options('*', cors(corsOptions)); // handle preflight requests
-
+app.use(cors(corsOptions));
 app.use(express.json());
 
+// Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/chargers', chargerRoutes);
 

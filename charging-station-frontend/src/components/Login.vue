@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import api from '../services/api'
 
 export default {
   data() {
@@ -32,8 +32,7 @@ export default {
         return;
       }
       try {
-        const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/auth/login`
-, {
+          const res = await api.post('/api/auth/login', {
           email: this.email,
           password: this.password
         });

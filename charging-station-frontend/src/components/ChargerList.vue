@@ -93,12 +93,12 @@ export default {
     },
     async saveEdit(id) {
       try {
-        await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/chargers/${id}`, data)
+        await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/chargers/${id}`
 , this.editForm, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
           }
-        }
+        })
         alert('Charger updated!')
         this.cancelEdit()
         this.$emit('charger-deleted') // triggers re-fetch
